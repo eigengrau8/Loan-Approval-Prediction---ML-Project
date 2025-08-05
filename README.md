@@ -1,38 +1,72 @@
-# Loan-Approval-Prediction---ML-Project
-A machine learning project to predict whether a loan application will be approved, based on applicant financial and personal information.
+# 🏦 Loan Approval Prediction - ML Project
 
-## 📂 Dataset
-- Total records: 10,000 (sampled from larger dataset)
-- Features include income, credit history, dependents, loan amount, and more.
+## 📌 Objective
 
-## 🔍 Objective
-Build a classification model to predict `Loan_Status` (Approved/Not Approved).
+To develop a machine learning model that predicts whether a loan application will be approved based on applicant demographics and financial data. This project simulates real-world data issues and helps automate decisions in financial institutions.
 
-## 🧹 Data Preprocessing
-- Handled missing values using mean/median for numerical and mode for categorical features.
-- Feature engineering:
-  - `TotalIncome` = `ApplicantIncome` + `CoapplicantIncome`
-  - `EMI` = `LoanAmount` / `Loan_Amount_Term`
-  - `Balance_Income` = `TotalIncome` – `EMI`
-- One-Hot Encoding for categorical variables.
-- Addressed outliers using IQR-based filtering and log transformation where needed.
-- Scaled numerical features where appropriate.
+---
 
-## 🧠 Modeling
-- Used `RandomForestClassifier` from scikit-learn.
-- Stratified train-test split to handle class imbalance.
-- 5-fold cross-validation used for robust evaluation.
+## 📁 Dataset Overview
 
-## 📊 Evaluation
-- Average F1 Score: **~0.80**
-- High recall on approved loans; good precision on both classes.
-- Feature importance showed that income-related features were key predictors.
+- **Size:** 100,000 rows × 13 columns
+- **Target Variable:** Loan_Status (Y = approved, N = denied)
 
-## 🔍 Key Findings
-- **Top predictors**: CoapplicantIncome, ApplicantIncome, TotalIncome, Balance_Income.
-- Applicants with higher disposable income (post-EMI) were more likely to be approved.
-- Credit history played a supporting role in approval decisions.
+### 🔸 Features
 
-## 📁 Project Files
-- `loan_approval_prediction.ipynb`: Full notebook with preprocessing, EDA, modeling, and evaluation.
-- `loan_data.csv`: Cleaned dataset used for model training.
+| Type | Features |
+|------|----------|
+| Categorical | Gender, Married, Education, Self_Employed, Property_Area, Dependents |
+| Numerical | ApplicantIncome, CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History, Age |
+
+---
+
+## ⚙️ Workflow
+
+1. **Data Cleaning**
+   - Converted data types
+   - Handled missing and negative values
+   - Outlier treatment
+
+2. **Feature Engineering**
+   - Total income
+   - EMI
+   - Income-to-loan ratio
+   - One-hot encoding
+
+3. **Exploratory Data Analysis**
+   - Univariate & bivariate plots
+   - Correlation matrix
+   - Multicollinearity check (VIF)
+
+4. **Model Building**
+   - Random Forest (primary)
+   - Logistic Regression
+   - XGBoost
+
+5. **Evaluation**
+   - Classification Report
+   - Confusion Matrix
+   - ROC AUC Score
+
+---
+
+## 📊 Results
+
+- **Accuracy:** 77%
+- **ROC AUC:** 0.78
+- **Insights:**
+  - EMI and Credit Score most predictive
+  - Recall for approved loans is very high (0.97)
+  - Model performs well but leans towards approving loans
+
+---
+
+## 🧠 Key Learnings
+
+- End-to-end pipeline: cleaning → EDA → modeling
+- Realistic feature engineering and handling messy data
+- Understanding trade-off between precision and recall in financial applications
+- Addressing class imbalance without oversampling
+
+---
+
